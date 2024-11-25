@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Retro Calculator
+
+A modern take on a retro-style calculator built with Next.js, TypeScript, and Tailwind CSS. This calculator features both numeric calculations and date operations with a nostalgic design.
+
+## Features
+
+### Numbers Calculator
+
+- Basic arithmetic operations (+, -, \*, /)
+- Decimal point support
+- Clear function
+- Error handling for invalid operations
+- Retro-style display
+
+### Date Calculator
+
+- Interactive calendar view
+- Add/subtract days from selected date
+- Visual date selection
+- Date formatting
+- Retro-style display
+
+## Tech Stack
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Radix UI Components
+- date-fns
+- Vitest for testing
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project includes unit tests for calculator operations. Run tests with:
 
-## Learn More
+```bash
+npm test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/src/components/` - React components
+  - `RetroCalculator/` - Main calculator component
+  - `NumbersCalculator/` - Numeric operations component
+  - `DateCalculator/` - Date operations component
+  - `ui/` - Reusable UI components
+- `/src/lib/` - Utility functions and helpers
+- `/src/utils/` - Constants and shared utilities
+- `/src/app/` - Next.js app router files
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features Highlights
 
-## Deploy on Vercel
+### Numbers Calculator
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Real-time calculation
+- Error handling for:
+  - Division by zero
+  - Invalid expressions
+  - Multiple operators
+  - Invalid decimal points
+- Responsive button layout
+- Clear function to reset display
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Date Calculator
+
+- Interactive calendar grid
+- Current month highlighting
+- Selected date highlighting
+- Add/subtract days functionality
+- Formatted date display
+- Date validation
+
+## Design
+
+The calculator features a retro-inspired design with:
+
+- Gradient backgrounds
+- Inset shadows for displays
+- Orange accent colors
+- Retro-style buttons with press animations
+- Monospace fonts for displays
+- Tab-based navigation between calculators
+
