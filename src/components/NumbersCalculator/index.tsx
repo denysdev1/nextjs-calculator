@@ -1,6 +1,8 @@
 import { type FC } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { numbersCalculatorButtons } from '@/utils/consts';
+import { calculateExpressionResult } from '@/helpers';
 
 type Props = {
   numberDisplay: string;
@@ -11,24 +13,6 @@ export const NumbersCalculator: FC<Props> = ({
   numberDisplay,
   setNumberDisplay,
 }) => {
-  const buttonValues = [
-    '7',
-    '8',
-    '9',
-    '/',
-    '4',
-    '5',
-    '6',
-    '*',
-    '1',
-    '2',
-    '3',
-    '-',
-    '0',
-    '.',
-    '=',
-    '+',
-  ];
   const handleNumberClick = (value: string) => {
     setNumberDisplay(numberDisplay === '0' ? value : numberDisplay + value);
   };
@@ -37,12 +21,15 @@ export const NumbersCalculator: FC<Props> = ({
     setNumberDisplay(numberDisplay + operation);
   };
 
-  const calculateResult = () => {
-    try {
-      setNumberDisplay(eval(numberDisplay).toString());
-    } catch {
-      setNumberDisplay('Error');
+  const handleCalculate = () => {
+    if (numberDisplay.includes('Error')) {
+      setNumberDisplay('0');
+      return;
     }
+
+    const result = calculateExpressionResult(numberDisplay);
+
+    setNumberDisplay(result);
   };
 
   const clearDisplay = () => {
@@ -59,11 +46,11 @@ export const NumbersCalculator: FC<Props> = ({
         />
       </div>
       <div className='grid grid-cols-4 gap-2'>
-        {buttonValues.map((btn) => (
+        {numbersCalculatorButtons.map((btn) => (
           <Button
             key={btn}
             onClick={() =>
-              btn === '=' ? calculateResult() : handleNumberClick(btn)
+              btn === '=' ? handleCalculate() : handleNumberClick(btn)
             }
             className={`text-xl font-bold rounded-sm ${
               btn === '='

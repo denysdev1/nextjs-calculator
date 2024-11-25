@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calculator as CalculatorIcon, CalendarIcon } from 'lucide-react';
-import { NumbersCalculator } from '@/components/Calculator';
+import { NumbersCalculator } from '@/components/NumbersCalculator';
 import { DateCalculator } from '@/components/DateCalculator';
 
 const RetroCalculator = () => {
