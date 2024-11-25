@@ -17,9 +17,9 @@ export const NumbersCalculator: FC<Props> = ({
     setNumberDisplay(numberDisplay === '0' ? value : numberDisplay + value);
   };
 
-  const handleOperationClick = (operation: string) => {
-    setNumberDisplay(numberDisplay + operation);
-  };
+  // const handleOperationClick = (operation: string) => {
+  //   setNumberDisplay(numberDisplay + operation);
+  // };
 
   const handleCalculate = () => {
     if (numberDisplay.includes('Error')) {
