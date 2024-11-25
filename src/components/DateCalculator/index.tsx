@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { format, addDays, subDays } from 'date-fns';
+import { weekdays } from '@/utils/consts';
+import { getMonthDates } from '@/utils';
 
 type Props = {
   dateDisplay: Date;
@@ -12,42 +14,16 @@ type Props = {
 export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
   const [dateDays, setDateDays] = useState(0);
 
-  const getMonthDates = () => {
-    // Get first day of current month
-    const firstDayOfMonth = new Date(
-      dateDisplay.getFullYear(),
-      dateDisplay.getMonth(),
-      1
-    );
-
-    // Get the starting date by subtracting days until we reach the first Sunday
-    const startDate = new Date(firstDayOfMonth);
-    while (startDate.getDay() !== 0) {
-      startDate.setDate(startDate.getDate() - 1);
-    }
-
-    const dates: Date[] = [];
-
-    // Generate 42 days, creating new Date objects for each day
-    for (let i = 0; i < 42; i++) {
-      const currentDate = new Date(startDate);
-      currentDate.setDate(startDate.getDate() + i);
-      dates.push(currentDate);
-    }
-
-    return dates;
-  };
-
   const renderCalendar = () => {
     // Render weekday headers
-    const weekDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((day) => (
+    const weekDaysItems = weekdays.map((day) => (
       <div key={day} className='text-center font-bold text-gray-400'>
         {day}
       </div>
     ));
 
     // Render calendar dates
-    const calendarDates = getMonthDates().map((date, index) => {
+    const calendarDates = getMonthDates(dateDisplay).map((date, index) => {
       const isCurrentMonth = date.getMonth() === dateDisplay.getMonth();
       const isSelected = date.toDateString() === dateDisplay.toDateString();
 
@@ -68,7 +44,7 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
 
     return (
       <div className='grid grid-cols-7 gap-2'>
-        {weekDays}
+        {weekDaysItems}
         {calendarDates}
       </div>
     );

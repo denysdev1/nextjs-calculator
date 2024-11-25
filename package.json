@@ -1,13 +1,14 @@
 {
   "name": "calculator-with-tests",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --no-watch"
+    "test": "vitest --no-watch --reporter=verbose"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
