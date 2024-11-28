@@ -1,4 +1,5 @@
-import type { FC } from 'react';
+'use client';
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,12 +7,8 @@ import { format, addDays, subDays } from 'date-fns';
 import { weekdays } from '@/utils/consts';
 import { getMonthDates } from '@/utils';
 
-type Props = {
-  dateDisplay: Date;
-  setDateDisplay: (value: Date) => void;
-};
-
-export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
+export const DateCalculator = () => {
+  const [dateDisplay, setDateDisplay] = useState(new Date());
   const [dateDays, setDateDays] = useState(0);
 
   const renderCalendar = () => {
@@ -37,6 +34,7 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
               ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
               : 'bg-gray-800 text-gray-500 hover:bg-gray-700'
           } ${isSelected ? 'border border-orange-500' : ''}`}
+          aria-label={format(date, 'MMMM d')}
         >
           {date.getDate()}
         </Button>

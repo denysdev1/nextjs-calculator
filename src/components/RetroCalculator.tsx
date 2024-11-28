@@ -1,14 +1,9 @@
-'use client';
-
-import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calculator as CalculatorIcon, CalendarIcon } from 'lucide-react';
 import { NumbersCalculator } from '@/components/NumbersCalculator';
 import { DateCalculator } from '@/components/DateCalculator';
 
 const RetroCalculator = () => {
-  const [dateDisplay, setDateDisplay] = useState(new Date());
-
   return (
     <div className='w-full max-w-md mx-auto bg-gradient-to-b from-gray-700 to-gray-900 p-4 sm:p-8 rounded-lg shadow-2xl border-t-8 border-gray-600'>
       <Tabs defaultValue='numbers' className='w-full'>
@@ -32,10 +27,7 @@ const RetroCalculator = () => {
           <NumbersCalculator />
         </TabsContent>
         <TabsContent value='dates'>
-          <DateCalculator
-            dateDisplay={dateDisplay}
-            setDateDisplay={setDateDisplay}
-          />
+          <DateCalculator />
         </TabsContent>
       </Tabs>
     </div>
