@@ -15,14 +15,15 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
   const [dateDays, setDateDays] = useState(0);
 
   const renderCalendar = () => {
-    // Render weekday headers
     const weekDaysItems = weekdays.map((day) => (
-      <div key={day} className='text-center font-bold text-gray-400'>
+      <div
+        key={day}
+        className='text-center font-bold text-gray-400 text-[10px] sm:text-sm'
+      >
         {day}
       </div>
     ));
 
-    // Render calendar dates
     const calendarDates = getMonthDates(dateDisplay).map((date, index) => {
       const isCurrentMonth = date.getMonth() === dateDisplay.getMonth();
       const isSelected = date.toDateString() === dateDisplay.toDateString();
@@ -31,11 +32,11 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
         <Button
           key={index}
           onClick={() => setDateDisplay(new Date(date))}
-          className={`p-2 text-sm rounded-sm ${
+          className={`p-0.5 sm:p-2 text-[10px] leading-tight sm:text-sm rounded-sm min-w-[24px] sm:min-w-[32px] ${
             isCurrentMonth
               ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
               : 'bg-gray-800 text-gray-500 hover:bg-gray-700'
-          } ${isSelected ? 'border-2 border-orange-500' : ''}`}
+          } ${isSelected ? 'border border-orange-500' : ''}`}
         >
           {date.getDate()}
         </Button>
@@ -43,7 +44,7 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
     });
 
     return (
-      <div className='grid grid-cols-7 gap-2'>
+      <div className='grid grid-cols-7 gap-0.5 sm:gap-2'>
         {weekDaysItems}
         {calendarDates}
       </div>
@@ -62,34 +63,36 @@ export const DateCalculator: FC<Props> = ({ dateDisplay, setDateDisplay }) => {
   };
 
   return (
-    <div className='space-y-4'>
-      <div className='bg-gray-800 p-4 rounded-md shadow-inner'>
-        <div className='text-center mb-2 font-bold text-[#33d9b2] text-xl'>
+    <div className='space-y-2 sm:space-y-4'>
+      <div className='bg-gray-800 p-2 sm:p-4 rounded-md shadow-inner'>
+        <div className='text-center mb-1 sm:mb-2 font-bold text-[#33d9b2] text-base sm:text-xl'>
           {format(dateDisplay, 'MMMM d, yyyy')}
         </div>
         {renderCalendar()}
       </div>
-      <div className='flex items-center gap-2'>
+      <div className='flex flex-col flex-wrap sm:flex-row items-center gap-2'>
         <Input
           type='number'
           placeholder='Days'
           onChange={(e) => setDateDays(parseInt(e.target.value) || 0)}
-          className='bg-gray-700 border-none rounded-sm text-gray-200 font-mono'
+          className='w-full sm:w-auto bg-gray-700 border-none rounded-sm text-gray-200 font-mono flex-1'
         />
-        <Button
-          onClick={() => handleDateOperation('add')}
-          className='bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all'
-        >
-          Add
-        </Button>
-        <Button
-          onClick={() => handleDateOperation('subtract')}
-          className='bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all'
-        >
-          Subtract
-        </Button>
+        <div className='flex gap-2 w-full sm:w-auto flex-1'>
+          <Button
+            onClick={() => handleDateOperation('add')}
+            className='flex-1 bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all text-sm sm:text-base'
+          >
+            Add
+          </Button>
+          <Button
+            onClick={() => handleDateOperation('subtract')}
+            className='flex-1 bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all text-sm sm:text-base'
+          >
+            Subtract
+          </Button>
+        </div>
       </div>
-      <div className='text-center text-[#33d9b2] text-xl font-bold font-mono bg-gray-800 p-2 rounded-md'>
+      <div className='text-center text-[#33d9b2] text-lg sm:text-xl font-bold font-mono bg-gray-800 p-2 rounded-md'>
         Result: {format(dateDisplay, 'MM/dd/yyyy')}
       </div>
     </div>
