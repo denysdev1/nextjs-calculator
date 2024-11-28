@@ -7,10 +7,10 @@ import '@testing-library/jest-dom/vitest';
 
 const TEST_CASES = {
   basicOperations: {
-    addition: { expression: '2+2', expected: 2 + 2 },
-    subtraction: { expression: '5-3', expected: 5 - 3 },
-    multiplication: { expression: '3*4', expected: 3 * 4 },
-    division: { expression: '8/2', expected: 8 / 2 },
+    addition: { expression: '2+2', expected: String(2 + 2) },
+    subtraction: { expression: '5-3', expected: String(5 - 3) },
+    multiplication: { expression: '3*4', expected: String(3 * 4) },
+    division: { expression: '8/2', expected: String(8 / 2) },
   },
   invalidExpressions: {
     incompleteOperations: ['1+1+', '1+1/', '1+1*', '1+1-'],
@@ -22,8 +22,8 @@ const TEST_CASES = {
   },
   specialCases: {
     divisionByZero: { expression: '5/0', expected: 'Error' },
-    negativeNumbers: { expression: '-5+3', expected: -5 + 3 },
-    decimalNumbers: { expression: '5/2', expected: 5 / 2 },
+    negativeNumbers: { expression: '-5+3', expected: String(-5 + 3) },
+    decimalNumbers: { expression: '5/2', expected: String(5 / 2) },
   },
   uiTests: {
     simpleExpression: {
