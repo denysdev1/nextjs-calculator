@@ -7,7 +7,6 @@ import { NumbersCalculator } from '@/components/NumbersCalculator';
 import { DateCalculator } from '@/components/DateCalculator';
 
 const RetroCalculator = () => {
-  const [numberDisplay, setNumberDisplay] = useState('0');
   const [dateDisplay, setDateDisplay] = useState(new Date());
 
   return (
@@ -30,10 +29,7 @@ const RetroCalculator = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value='numbers'>
-          <NumbersCalculator
-            numberDisplay={numberDisplay}
-            setNumberDisplay={setNumberDisplay}
-          />
+          <NumbersCalculator />
         </TabsContent>
         <TabsContent value='dates'>
           <DateCalculator

@@ -1,18 +1,12 @@
-import { type FC } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { numbersCalculatorButtons } from '@/utils/consts';
 import { calculateExpressionResult } from '@/helpers';
 
-type Props = {
-  numberDisplay: string;
-  setNumberDisplay: (value: string) => void;
-};
+export const NumbersCalculator = () => {
+  const [numberDisplay, setNumberDisplay] = useState('0');
 
-export const NumbersCalculator: FC<Props> = ({
-  numberDisplay,
-  setNumberDisplay,
-}) => {
   const handleNumberClick = (value: string) => {
     setNumberDisplay(numberDisplay === '0' ? value : numberDisplay + value);
   };
@@ -64,7 +58,8 @@ export const NumbersCalculator: FC<Props> = ({
       </div>
       <Button
         onClick={clearDisplay}
-        className='w-full bg-red-500 hover:bg-red-600 text-xl font-bold rounded-sm border-b-4 border-red-700 active:border-b-0 active:mt-1 transition-all'
+        className='w-full bg-red-500 hover:bg-red-600 text-xl font-bold rounded-sm border-b-4
+          border-red-700 active:border-b-0 active:mt-1 transition-all'
       >
         Clear
       </Button>
