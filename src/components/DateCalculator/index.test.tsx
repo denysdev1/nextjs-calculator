@@ -5,8 +5,7 @@ import { DateCalculator } from './index';
 import { format } from 'date-fns';
 import user from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
-
-const MOCK_DATE = new Date(2024, 2, 1); // March 1, 2024
+import { MOCK_DATE } from '@/utils/consts';
 
 const setupComponent = () => {
   render(<DateCalculator />);

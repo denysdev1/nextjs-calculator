@@ -18,3 +18,5 @@ export const numbersCalculatorButtons = [
 ];
 
 export const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+export const MOCK_DATE = new Date(2024, 2, 1);

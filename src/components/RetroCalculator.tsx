@@ -11,6 +11,7 @@ const RetroCalculator = () => {
           <TabsTrigger
             value='numbers'
             className='data-[state=active]:bg-orange-500 rounded-sm !text-gray-300 transition-colors text-sm sm:text-base'
+            data-cy='numbers-tab'
           >
             <CalculatorIcon className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
             Numbers
@@ -18,6 +19,7 @@ const RetroCalculator = () => {
           <TabsTrigger
             value='dates'
             className='data-[state=active]:bg-orange-500 rounded-sm !text-gray-300 transition-colors text-sm sm:text-base'
+            data-cy='dates-tab'
           >
             <CalendarIcon className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
             Dates
