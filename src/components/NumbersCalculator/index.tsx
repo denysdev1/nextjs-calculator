@@ -5,12 +5,27 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { numbersCalculatorButtons } from '@/utils/consts';
 import { calculateExpressionResult } from '@/helpers';
+import { maxMathSymbolsOccurencesInCalculatorRow } from '@/utils/consts';
+import { getOccurencesInRow } from '@/utils';
 
 export const NumbersCalculator = () => {
   const [numberDisplay, setNumberDisplay] = useState('0');
 
-  const handleNumberClick = (value: string) => {
-    setNumberDisplay(numberDisplay === '0' ? value : numberDisplay + value);
+  const handleMathButtonClick = (value: string) => {
+    const isSpecialSymbol = isNaN(+value);
+    const lastDigit = numberDisplay.at(-1);
+
+    if (isSpecialSymbol && lastDigit === value) {
+      const maxOccurences =
+        maxMathSymbolsOccurencesInCalculatorRow[value] || Infinity;
+      const lastDigitOccurences = getOccurencesInRow(numberDisplay, value);
+
+      if (lastDigitOccurences >= maxOccurences) return;
+    }
+
+    setNumberDisplay(
+      numberDisplay === '0' && !isSpecialSymbol ? value : numberDisplay + value
+    );
   };
 
   // const handleOperationClick = (operation: string) => {
@@ -47,7 +62,7 @@ export const NumbersCalculator = () => {
           <Button
             key={btn}
             onClick={() =>
-              btn === '=' ? handleCalculate() : handleNumberClick(btn)
+              btn === '=' ? handleCalculate() : handleMathButtonClick(btn)
             }
             className={`text-xl font-bold rounded-sm ${
               btn === '='

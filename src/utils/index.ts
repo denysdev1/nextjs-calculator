@@ -23,3 +23,9 @@ export const getMonthDates = (dateDisplay: Date) => {
 
   return dates;
 };
+
+export const getOccurencesInRow = (row: string, value: string) => {
+  const escapedValue = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  return row.match(new RegExp(`${escapedValue}+$`))?.[0].length || 0;
+};

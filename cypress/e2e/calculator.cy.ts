@@ -1,6 +1,10 @@
 import { MOCK_DATE } from '@/utils/consts';
 
 const clickCalculatorButton = (button: string) => {
+  if (button.length > 1) {
+    throw new Error('Button length should be 1');
+  }
+
   cy.getByTestId(`calculator-button_${button}`).click();
 };
 
@@ -50,6 +54,24 @@ describe('Numbers Calculator', () => {
     // Press 5 to get 35
     clickCalculatorButton('5');
     displayShouldHaveValue('35');
+  });
+
+  it('should not append mathematical symbols more times than allowed', () => {
+    const combinations = [
+      { expression: '1++', result: '1+' },
+      { expression: '2--3', result: '1+2-3' },
+      { expression: '//4', result: '1+2-3/4' },
+      { expression: '**5', result: '1+2-3/4**5' },
+      { expression: '2***4', result: '1+2-3/4**52**4' },
+    ];
+
+    for (const combination of combinations) {
+      for (const digit of combination.expression) {
+        clickCalculatorButton(digit);
+      }
+
+      displayShouldHaveValue(combination.result);
+    }
   });
 });
 
