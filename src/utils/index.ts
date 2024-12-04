@@ -6,8 +6,10 @@ export const getMonthDates = (dateDisplay: Date) => {
     1
   );
 
-  // Get the starting date by subtracting days until we reach the first Sunday
+  // Calculate the last Sunday of the previous month
   const startDate = new Date(firstDayOfMonth);
+  startDate.setDate(0); // Go to the last day of previous month
+
   while (startDate.getDay() !== 0) {
     startDate.setDate(startDate.getDate() - 1);
   }

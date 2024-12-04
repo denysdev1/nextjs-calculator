@@ -28,10 +28,6 @@ export const NumbersCalculator = () => {
     );
   };
 
-  // const handleOperationClick = (operation: string) => {
-  //   setNumberDisplay(numberDisplay + operation);
-  // };
-
   const handleCalculate = () => {
     if (numberDisplay.includes('Error')) {
       setNumberDisplay('0');

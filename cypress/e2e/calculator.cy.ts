@@ -95,14 +95,58 @@ describe('Numbers Calculator', () => {
   });
 });
 
+const enterDays = (days: string) => {
+  cy.getByTestId('days-input').clear().type(days);
+};
+
+const clickAddButton = () => {
+  cy.getByTestId('add-button').click();
+};
+
+const clickSubtractButton = () => {
+  cy.getByTestId('subtract-button').click();
+};
+
 describe('Dates Calculator', () => {
   beforeEach(() => {
     cy.clock(MOCK_DATE);
+    cy.getByTestId('dates-tab').click();
   });
 
-  it('should show the dates calculator', () => {
-    cy.getByTestId('dates-tab').click();
+  it('should show the current date', () => {
     cy.contains('March 1, 2024');
+  });
+
+  it('should show week days', () => {
+    cy.getByTestId('week-day').should('have.length', 7);
+  });
+
+  it('should display 42 days in the calendar', () => {
+    cy.getByTestId('calendar').find('button').should('have.length', 42);
+  });
+
+  it('days input should have a placeholder', () => {
+    cy.getByTestId('days-input').should('have.attr', 'placeholder', 'Days');
+  });
+
+  it('should calculate the dates', () => {
+    enterDays('10');
+    clickAddButton();
+    cy.contains('March 11, 2024');
+    enterDays('-11');
+    clickAddButton();
+    cy.contains('February 29, 2024');
+    enterDays('3');
+    clickSubtractButton();
+    cy.contains('February 26, 2024');
+  });
+
+  it('should be able to select dates from previous and next months', () => {
+    cy.getByTestId('date-February 29').should('be.visible').click();
+    cy.contains('February 29, 2024');
+    cy.getByTestId('date-March 9').should('be.visible').click();
+    cy.getByTestId('date-April 6').should('be.visible').click();
+    cy.contains('April 6, 2024');
   });
 });
 

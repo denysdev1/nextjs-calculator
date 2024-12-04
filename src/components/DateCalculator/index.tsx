@@ -35,6 +35,7 @@ export const DateCalculator = () => {
               : 'bg-gray-800 text-gray-500 hover:bg-gray-700'
           } ${isSelected ? 'border border-orange-500' : ''}`}
           aria-label={format(date, 'MMMM d')}
+          data-cy={`date-${format(date, 'MMMM d')}`}
         >
           {date.getDate()}
         </Button>
@@ -42,7 +43,7 @@ export const DateCalculator = () => {
     });
 
     return (
-      <div className='grid grid-cols-7 gap-0.5 sm:gap-2'>
+      <div className='grid grid-cols-7 gap-0.5 sm:gap-2' data-cy='calendar'>
         {weekDaysItems}
         {calendarDates}
       </div>
@@ -74,17 +75,20 @@ export const DateCalculator = () => {
           placeholder='Days'
           onChange={(e) => setDateDays(parseInt(e.target.value) || 0)}
           className='w-full sm:w-auto bg-gray-700 border-none rounded-sm text-gray-200 font-mono flex-1'
+          data-cy='days-input'
         />
         <div className='flex gap-2 w-full sm:w-auto flex-1'>
           <Button
             onClick={() => handleDateOperation('add')}
             className='flex-1 bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all text-sm sm:text-base'
+            data-cy='add-button'
           >
             Add
           </Button>
           <Button
             onClick={() => handleDateOperation('subtract')}
             className='flex-1 bg-orange-500 hover:bg-orange-600 rounded-sm text-white border-b-4 border-orange-700 active:border-b-0 active:mt-1 transition-all text-sm sm:text-base'
+            data-cy='subtract-button'
           >
             Subtract
           </Button>
