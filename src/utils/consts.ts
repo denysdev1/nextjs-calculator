@@ -17,7 +17,7 @@ export const numbersCalculatorButtons = [
   '+',
 ];
 
-export const maxMathSymbolsOccurencesInCalculatorRow = {
+export const maxMathSymbolsOccurencesInCalculatorRow: Record<string, number> = {
   '*': 2,
   '/': 1,
   '+': 1,

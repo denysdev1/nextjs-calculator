@@ -73,6 +73,26 @@ describe('Numbers Calculator', () => {
       displayShouldHaveValue(combination.result);
     }
   });
+
+  it('should show "Error" on display for invalid expressions', () => {
+    const invalidExpressions = ['1+-*/.', '/*4', '+*-5', '2*.+', '0.+', '/0'];
+
+    for (const expression of invalidExpressions) {
+      for (const digit of expression) {
+        clickCalculatorButton(digit);
+      }
+
+      clickCalculatorButton('=');
+      displayShouldHaveValue('Error');
+      cy.getByTestId('clear-button').click();
+    }
+  });
+
+  it('should clear the display', () => {
+    clickCalculatorButton('1');
+    cy.getByTestId('clear-button').click();
+    displayShouldHaveValue('0');
+  });
 });
 
 describe('Dates Calculator', () => {
