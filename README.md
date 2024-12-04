@@ -49,10 +49,46 @@ npm run dev
 
 ## Testing
 
-The project includes unit tests for calculator operations. Run tests with:
+The project includes comprehensive testing setup with both unit tests and end-to-end tests:
+
+### Unit Tests
+
+Unit tests are implemented using React Testing Library and Vitest. They cover:
+
+- Calculator operations and logic
+- Date manipulation functions
+- Component rendering and interactions
+- User input handling
+
+Run unit tests with:
 
 ```bash
 npm test
+```
+
+### End-to-End Tests
+
+E2E tests are implemented using Cypress and cover full user workflows:
+
+#### Numbers Calculator
+
+- Basic arithmetic operations
+- Input validation
+- Error handling
+- Clear functionality
+- Multiple operations chaining
+
+#### Date Calculator
+
+- Date selection
+- Days addition/subtraction
+- Calendar navigation
+- Date formatting
+
+Run E2E tests with:
+
+```bash
+npm run cy:open
 ```
 
 ## Project Structure
@@ -65,6 +101,8 @@ npm test
 - `/src/lib/` - Utility functions and helpers
 - `/src/utils/` - Constants and shared utilities
 - `/src/app/` - Next.js app router files
+- `/cypress/e2e/` - Cypress end-to-end tests
+- `/cypress/` - Cypress configuration
 
 ## Features Highlights
 

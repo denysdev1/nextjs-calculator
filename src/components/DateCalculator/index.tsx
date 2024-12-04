@@ -16,6 +16,7 @@ export const DateCalculator = () => {
       <div
         key={day}
         className='text-center font-bold text-gray-400 text-[10px] sm:text-sm'
+        data-cy='week-day'
       >
         {day}
       </div>
