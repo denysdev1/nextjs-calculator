@@ -2,6 +2,8 @@
 
 A modern take on a retro-style calculator built with Next.js, TypeScript, and Tailwind CSS. This calculator features both numeric calculations and date operations with a nostalgic design.
 
+[DEMO](https://nextjs-calculator-roan.vercel.app/)
+
 ## Features
 
 ### Numbers Calculator
